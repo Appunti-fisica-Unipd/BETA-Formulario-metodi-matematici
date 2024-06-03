@@ -1,0 +1,235 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[justification=centering]{caption}
+\usepackage{multirow}
+\usepackage[colorlinks,allcolors={blue}]{hyperref}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\setlength{\parindent}{0pt}
+\usepackage{chngcntr}
+\usepackage{braket}
+
+\counterwithin{equation}{section}
+
+\newcommand{\F}[0]{\overset{F}{\longrightarrow}}{}
+\newcommand{\Ff}[0]{\mathcal{F}}{}
+\newcommand{\dx}[0]{\frac{d}{dx}}{}
+
+\begin{document}
+
+\title{Formulario di metodi matematici per le distribuzioni e le trasformate di Fourier}
+\author{Pietro Scapolo}
+\date{Anno 2021-2022}
+\maketitle
+
+\hrulefill
+\begin{centering}
+\section{Proprietà della trasformata}
+\end{centering}
+\bigskip
+
+Linearità:
+\begin{equation}
+    a \psi(x) + b \chi(x) \F a \Ff[\psi](k) + b \Ff[\chi](k)
+\end{equation}
+\bigskip
+
+Traslazione:
+\begin{equation}
+    \psi (x- a) \F e^{-ika} \Ff [\psi](k)    
+\end{equation}
+\bigskip
+
+Anti traslazione:
+\begin{equation}
+    e^{iax} \psi(x) \F  \Ff[\psi](k-a)
+\end{equation}
+\bigskip
+
+Riscalamento:
+\begin{equation}
+    \psi (ax) \F \frac{1}{|a|} \Ff [\psi]\left(\frac{k}{a}\right)
+\end{equation}
+\bigskip
+
+Derivata:
+\begin{equation}
+    \left( \frac{d}{dx} \right)^n \psi (x) \F (ik)^n \Ff [\psi] (k)
+\end{equation}
+\bigskip
+
+Vicerversa:
+\begin{equation}
+    x^n \psi(x) \F \left(i \frac{d}{dk} \right)^n \Ff [\psi](k)
+\end{equation}
+\bigskip
+
+Coniugazione:
+\begin{equation}
+    \overline{\psi}(x) \F \overline{\Ff[\psi]}(-k)
+\end{equation}
+\bigskip
+
+Trasformata di funzione pari:
+\begin{equation}
+   \Ff[\psi](-k) = \Ff[\psi](k)
+\end{equation}
+
+\newpage
+\hrulefill
+\begin{center}
+\section{Trasformazioni di Fourier}
+\end{center}
+
+
+\begin{equation}
+    1 \F \sqrt{2\pi}\cdot \delta(k)
+\end{equation}
+\begin{equation}
+    e^{iax}= 1 \cdot e^{iax} \F \sqrt{2 \pi} \delta(k-a)
+\end{equation}
+\begin{equation}
+    \delta (x-a) \F \frac{1}{\sqrt{2\pi}} e^{-ika}
+\end{equation}
+\begin{equation}
+    e^{-ax} \F \sqrt{2\pi}\delta(k+ia) 
+\end{equation}
+\begin{equation}
+    e^{-\frac{a}{2}x^2} \F \frac{e^{-\frac{k^2}{2a}}}{\sqrt{a}}
+\end{equation}
+\begin{equation}
+    \cos(ax) \F \sqrt{\frac{\pi}{2}} \bigg( \delta (k-a) + \delta (k+a) \bigg)
+\end{equation}
+\begin{equation}
+    \sin(ax) \F -i \sqrt{\frac{\pi}{2}} \bigg( \delta (k-a) - \delta (k+a) \bigg)
+\end{equation}
+
+
+\bigskip
+Con dimostrazione:
+\begin{equation}
+    P\left(\frac{1}{x}\right)\F -i\sqrt{\frac{\pi}{2}}\cdot sgn(k)
+\end{equation}
+
+\begin{equation}
+    sgn(x) \F -i \sqrt{\frac{2}{\pi}} P \left( \frac{1}{k} \right) 
+\end{equation}
+
+\begin{equation}
+    \theta (x) \F \sqrt{\frac{\pi}{2}} \delta(k) - \frac{i}{\sqrt{2 \pi}} P \left( \frac{1}{k} \right) = - \frac{i}{\sqrt{2 \pi}} \frac{1}{k-i \epsilon} 
+\end{equation}
+
+
+\newpage
+
+\hrulefill
+\begin{center}
+\section{Proprietà delle distribuzioni}
+\end{center}
+\begin{equation}
+    \braket{\overline{\phi}|\psi} = \overline{\braket{\phi|\overline \psi}}
+\end{equation}
+\begin{equation}
+    \braket{\phi (ax) | \psi} = \frac{1}{|a|} \braket{\phi| \psi \left( \frac{x}{a} \right)}
+\end{equation}
+\begin{equation}
+    \braket{\phi(x-a)|\psi}= \braket{\phi | \psi(x+a)}
+\end{equation}
+\begin{equation}
+    \braket{f \phi | \psi} = \braket{\phi | \overline f \psi}
+\end{equation}
+
+\vspace{3cm}
+\hrulefill
+\begin{centering}
+\section{Distribuzioni: identità}
+\end{centering}
+
+\begin{equation}
+    xf(x)=xg(x) \Rightarrow f(x) = g(x) + c \delta (x)  
+\end{equation}
+
+\begin{equation}
+    \Pi \left( \frac{x}{2} \right) = \theta (x+1) - \theta (x-1)
+\end{equation}
+\begin{equation}
+    \Pi \left( \frac{x}{2} \right) = \frac{1}{2}  \big( sgn(x+1) - sgn(x-1) \big)
+\end{equation}
+\begin{equation}
+    \braket{P \left(\frac{1}{x} \right) | \psi} = \int_0^{+ \infty} \frac{\psi(x)-\psi(-x)}{x}dx
+\end{equation}
+\begin{equation}
+    x P \left( \frac{1}{x} \right) = 1
+\end{equation}
+\begin{equation}
+    sgn(x)= 2 \theta (x) -1
+\end{equation}
+
+\newpage
+\begin{centering}
+\subsection{Identità di $\delta$}
+\end{centering}
+
+\begin{equation}
+    x \delta (x) =0
+\end{equation}
+\begin{equation}
+    \braket{\delta^{(n)} (x-a) | \psi} = (-1)^n \psi ^{(n)} (a)
+\end{equation}
+\begin{equation}
+    \overline{\delta (x)} = \delta(x)
+\end{equation}
+\begin{equation}
+    \delta(-x) = \delta(x)
+\end{equation}
+\begin{equation}
+    \delta (ax) = a^{-1} \delta(x)
+\end{equation}
+\begin{equation}
+    \delta(x^2 -a^2) = \frac{1}{2} a^{-1} \bigg( \delta(x-a) + \delta (x+a) \bigg)
+\end{equation}
+\begin{equation}
+    f(x) \delta (x-a) = f(a) \delta (x-a)
+\end{equation}
+
+\begin{equation}
+    \delta [g(x)] = \sum_{i=1}^N \frac{\delta (x-a_i)}{|g'(a_i)|}
+\end{equation}
+\emph{Con $a_i$ zeri semplici per $g(x)$.}
+
+
+\vspace{3cm}
+\hrulefill
+\begin{centering}
+\section{Distribuzioni: derivate notevoli}
+\end{centering}
+
+Regola di Leibniz:
+\begin{equation}
+    \dx (f \phi) = f' \phi + f \phi' 
+\end{equation}
+
+\begin{equation}
+    \dx log |x| = P \left( \frac{1}{x} \right)
+\end{equation}
+
+\begin{equation}
+    - \frac{1}{n} \dx P \left( \frac{1}{x} \right) = P \left( \frac{1}{x^{n+1}} \right)
+\end{equation}
+
+\begin{equation}
+    \dx \theta (x) = \delta (x)
+\end{equation}
+
+\begin{equation}
+    \dx sgnx (x) = 2 \delta(x)
+\end{equation}
+
+
+\end{document}
